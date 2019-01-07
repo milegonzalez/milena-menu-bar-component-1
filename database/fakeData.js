@@ -1,7 +1,6 @@
 const faker = require('faker');
 const mysql = require('mysql');
 
-
 let userDataGenerator = function () {
   let userData = [];
 

@@ -27,9 +27,8 @@ class Navigation extends React.Component {
     return (
       <ul className='navigation-titles'>
         <li>
-          {/* <Link to={'/Google/${}'}> */}
-          <a href='www.google.com'>Google</a>
-          {/* </Link> */}
+          <a href='www.google.com'>Username</a>
+          <div>numbers</div>
         </li>
         <li>
           <a href='www.google.com'>Clips</a>
