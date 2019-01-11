@@ -17,11 +17,21 @@ app.get('/users/username', function (req, res) {
       console.log('error')
     } else {
       console.log('these are results & fields', results, fields);
+      res.json(results);
     }
+  })
+});
 
+app.get('users/user_id', function (req, res) {
+  database.connection.query(query, (error, results) => {
+    if(error) {
+      console.log('error')
+    } else {
+      console.log('this is the username info', results)
+    }
   })
   res.status(200).send();
-});
+})
 
 
 // app.get('/users/category', function (req, res) {
