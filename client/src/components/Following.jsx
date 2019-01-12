@@ -13,14 +13,13 @@ class Following extends React.Component {
   }
 }
 
-const styles = {}
+const styles = {};
 
 styles.position = {
-  position: "relative",
-  top: "100px",
-  left: "251px"
+  position: "absolute",
+  top: "25px",
+  left: "260px"
 }
-
 
 
 export default Following;

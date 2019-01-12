@@ -7,12 +7,10 @@ import Following from './components/Following.jsx';
 import Followers from './components/Followers.jsx';
 
 
-// const Username = () => <h2>  .</h2>;
-
 const AppRouter = (props) => {
   return (
     <Router>
-      <div style={styles.mainNav}>
+      <div>
         <nav>
           <ul style={styles.nav}>
             <li style={styles.navItem}>
@@ -41,7 +39,6 @@ const AppRouter = (props) => {
           <button style={styles.navRight} onClick={(e) => props.onClick(e)}>Follow</button>
         </nav>
 
-        {/* <Route path="/" exact component={Username} /> */}
         <Route path="/Videos" component={Videos} />
         <Route path="/Clips" component={Clips} />
         <Route path="/Events" component={Events} />
@@ -54,10 +51,6 @@ const AppRouter = (props) => {
 }
 
 const styles = {};
-
-styles.mainNav = {
-  marginBottom: "50px"
-}
 
 styles.link = {
   textDecoration: "none"

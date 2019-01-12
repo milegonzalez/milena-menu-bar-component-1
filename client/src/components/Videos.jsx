@@ -7,8 +7,9 @@ class Videos extends React.Component {
       <div style={styles.position}>
 
       <h2>   .</h2>
-
+      <button>Click here</button>
       This is the Videos </div>
+
     )
   }
 }
@@ -16,20 +17,9 @@ class Videos extends React.Component {
 const styles = {}
 
 styles.position = {
-  position: "relative",
-  top: "100px",
-  left: "251px"
+  position: "absolute",
+  top: "25px",
+  left: "260px"
 }
-
-
-  //   render() {
-
-//     return (
-//       <div>
-//         <button>Click here</button>
-//       </div>
-//     )
-//   }
-// }
 
 export default Videos;

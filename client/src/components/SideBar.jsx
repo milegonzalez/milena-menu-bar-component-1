@@ -5,17 +5,29 @@ const SideBar = (props) => {
     return (
       <div style={styles.background}>
         <h3 style={styles.h3}>Followed Channels</h3>
-        <div style={styles.username}>{props.userInfo.followedUser}</div>
-        <div style={styles.category}>{props.userInfo.followedCategory}</div>
+        <div style={styles.div}>
+          <img src={props.userInfo.followedLogo} style={styles.logo}/>
+          <div style={styles.username}>{props.userInfo.followedUser}</div>
+          <div style={styles.category}>{props.userInfo.followedCategory}</div>
+        </div>
         <h3 style={styles.h3}>Recommended Channels</h3>
-        <div style={styles.username}>Dr. Lupo</div>
-        <div style={styles.category}>Fort Nite</div>
-        <div></div>
-        <div style={styles.username}>CrazyMan</div>
-        <div style={styles.category}>Fort Nite</div>
-        <div></div>
-        <div style={styles.username}>Loeya</div>
-        <div style={styles.category}>Fort Nite</div>
+        <div>
+        <div style={styles.div}>
+          <img src={props.userInfo.logo} style={styles.logo}/>
+          <div style={styles.username}>Dr. Lupo</div>
+          <div style={styles.category}>Fort Nite</div>
+        </div>
+        <div style={styles.div}>
+          <img src={props.userInfo.logo} style={styles.logo}/>
+          <div style={styles.username}>CrazyMan</div>
+          <div style={styles.category}>Fort Nite</div>
+        </div>
+        <div style={styles.div}>
+          <img src={props.userInfo.logo} style={styles.logo}/>
+          <div style={styles.username}>Loeya</div>
+          <div style={styles.category}>Fort Nite</div>
+        </div>
+        </div>
       </div>
     )
   }
@@ -23,11 +35,16 @@ const SideBar = (props) => {
 const styles = {};
 
 
-styles.logo = {
-  width: "25%",
-  borderRadius: "4px"
+styles.div = {
+  paddingTop: "10px"
 }
 
+styles.logo = {
+  width: "15%",
+  borderRadius: "4px",
+  float: "left",
+  paddingRight: "8px",
+}
 
 styles.h3 = {
   fontSize: "15px",

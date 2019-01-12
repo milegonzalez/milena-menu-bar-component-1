@@ -19,6 +19,7 @@ class App extends React.Component {
         toggle: 'On',
         followedUser: this.state.display_name,
         followedCategory: this.state.category,
+        followedLogo: this.state.logo,
         followers: newFollowers + 1
       })
     } else {
@@ -26,6 +27,7 @@ class App extends React.Component {
       this.setState({
         followedUser: null,
         followedCategory: null,
+        followedLogo: null,
         followers: newFollowers - 1
       })
     }
