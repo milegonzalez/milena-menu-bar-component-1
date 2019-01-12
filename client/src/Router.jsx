@@ -7,41 +7,41 @@ import Following from './components/Following.jsx';
 import Followers from './components/Followers.jsx';
 
 
-const Username = () => <h2>  .</h2>;
+// const Username = () => <h2>  .</h2>;
 
 const AppRouter = (props) => {
   return (
     <Router>
-      <div>
+      <div style={styles.mainNav}>
         <nav>
           <ul style={styles.nav}>
             <li style={styles.navItem}>
               <img style={styles.logo} src={props.userInfo.logo} />
             </li>
             <li style={styles.navItem}>
-              <Link to="/">{props.userInfo.display_name}</Link>
+              <Link to="/" style={styles.link}>{props.userInfo.display_name}</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Videos">Videos  {props.userInfo.Videos}</Link>
+              <Link to="/Videos" style={styles.link}>Videos  {props.userInfo.Videos}</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Clips">Clips</Link>
+              <Link to="/Clips" style={styles.link}>Clips</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Events">Events</Link>
+              <Link to="/Events" style={styles.link}>Events</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Followers">Followers  {props.userInfo.followers}</Link>
+              <Link to="/Followers" style={styles.link}>Followers  {props.userInfo.followers}</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Following">Following  {props.userInfo.following}</Link>
+              <Link to="/Following" style={styles.link}>Following  {props.userInfo.following} </Link>
             </li>
           </ul>
           <button style={styles.navRight} >Subscribe</button>
           <button style={styles.navRight} onClick={(e) => props.onClick(e)}>Follow</button>
         </nav>
 
-        <Route path="/" exact component={Username} />
+        {/* <Route path="/" exact component={Username} /> */}
         <Route path="/Videos" component={Videos} />
         <Route path="/Clips" component={Clips} />
         <Route path="/Events" component={Events} />
@@ -55,10 +55,19 @@ const AppRouter = (props) => {
 
 const styles = {};
 
+styles.mainNav = {
+  marginBottom: "50px"
+}
+
+styles.link = {
+  textDecoration: "none"
+}
+
 styles.nav = {
   padding: 0,
   margin: 0,
   position: "absolute",
+  left: "251px",
   top: 0,
   height: "51px",
   width: "80%",
@@ -70,7 +79,6 @@ styles.nav = {
 
 styles.navItem = {
   textAlign: "center",
-  flex: 1,
   listStyleType: "none",
   padding: "10px",
   borderBottom: "solid",
@@ -91,11 +99,9 @@ styles.navRight = {
 }
 
 styles.logo = {
-  width: "30%"
+  width: "25%",
+  borderRadius: "4px"
 }
-
-
-
 
 
 export default AppRouter;
