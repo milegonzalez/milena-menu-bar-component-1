@@ -5,15 +5,10 @@ class Videos extends React.Component {
 
     return (
       <div>
-
-        <h2>   .</h2>
-
-        This is the Videos </div>
+        <button>Click here</button>
+      </div>
     )
   }
 }
-
-
-
 
 export default Videos;

@@ -10,7 +10,6 @@ import Followers from './components/Followers.jsx';
 const Username = () => <h2>  .</h2>;
 
 const AppRouter = (props) => {
-  console.log(props)
   return (
     <Router>
       <div>

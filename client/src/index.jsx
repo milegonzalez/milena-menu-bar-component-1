@@ -13,17 +13,20 @@ class App extends React.Component {
   }
 
   handleClick (e) {
+    let newFollowers = this.state.followers;
     if(!this.state.toggle || this.state.followedUser === null) {
       this.setState({
         toggle: 'On',
         followedUser: this.state.display_name,
-        followedCategory: this.state.category
+        followedCategory: this.state.category,
+        followers: newFollowers + 1
       })
     } else {
       console.log(this.state)
       this.setState({
         followedUser: null,
-        followedCategory: null
+        followedCategory: null,
+        followers: newFollowers - 1
       })
     }
   }
