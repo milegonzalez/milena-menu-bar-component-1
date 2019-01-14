@@ -34,7 +34,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/users/username')
+    fetch('/username')
       .then(res => res.json())
       .then(
         (result) => {
@@ -44,17 +44,35 @@ class App extends React.Component {
             followers: result[0].followers,
             following: result[0].following,
             logo: result[0].logo,
-            profile_image_url: result[0].profile_image_url
+            profile_image_url: result[0].profile_image_url,
+            users: result
           })
         },
         (error) => {
           console.log('error')
         }
       )
+
+      fetch('/channels')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log('channels results =====> ', result)
+          this.setState({
+            channels: result
+          })
+        },
+        (error) => {
+          console.log('error')
+        }
+      )
+
   }
 
   render() {
     return (
+
+
       <div>
         <AppRouter userInfo={this.state} onClick={(e) => this.handleClick(e)}/>
         <SideBar userInfo={this.state} />

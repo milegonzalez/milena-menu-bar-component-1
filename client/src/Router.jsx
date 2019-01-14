@@ -8,6 +8,7 @@ import Followers from './components/Followers.jsx';
 
 
 const AppRouter = (props) => {
+  console.log('props.userinfo.users =====>', props)
   return (
     <Router>
       <div>
@@ -63,21 +64,17 @@ styles.nav = {
   left: "251px",
   top: 0,
   height: "51px",
-  width: "80%",
   display: "flex",
-  fontSize: "18px",
+  fontSize: "14px",
   fontFamily: "Helvetica",
-  fontColor: "#6441a4"
+  fontColor: "#6441a4",
+  alignContent: "center"
 }
 
 styles.navItem = {
   textAlign: "center",
   listStyleType: "none",
   padding: "10px",
-  borderBottom: "solid",
-  borderLeft: "solid",
-  borderColor: "#bcc0c6",
-  borderWidth: "0.5px"
 }
 
 styles.navRight = {

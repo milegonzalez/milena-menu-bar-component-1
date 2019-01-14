@@ -1,7 +1,31 @@
 import React from 'react';
 
 const SideBar = (props) => {
-  console.log(props)
+  const channelsInfo = props.userInfo.channels;
+  let recommendedChannelOneLogo;
+  let recommendedChannelTwoLogo;
+  let recommendedChannelThreeLogo;
+  let recommendedChannelOneCategory;
+  let recommendedChannelTwoCategory;
+  let recommendedChannelThreeCategory;
+  let recommendedChannelOneDisplayName;
+  let recommendedChannelTwoDisplayName;
+  let recommendedChannelThreeDisplayName;
+
+  if(channelsInfo){
+    recommendedChannelOneLogo = channelsInfo[0].logo;
+    recommendedChannelTwoLogo = channelsInfo[1].logo;
+    recommendedChannelThreeLogo = channelsInfo[2].logo;
+    recommendedChannelOneCategory = channelsInfo[0].category;
+    recommendedChannelTwoCategory = channelsInfo[1].category;
+    recommendedChannelThreeCategory = channelsInfo[2].category;
+    recommendedChannelOneDisplayName = channelsInfo[0].display_name;
+    recommendedChannelTwoDisplayName = channelsInfo[1].display_name;
+    recommendedChannelThreeDisplayName = channelsInfo[2].display_name;
+  }
+
+  console.log(channelsInfo)
+
     return (
       <div style={styles.background}>
         <h3 style={styles.h3}>Followed Channels</h3>
@@ -13,19 +37,19 @@ const SideBar = (props) => {
         <h3 style={styles.h3}>Recommended Channels</h3>
         <div>
         <div style={styles.div}>
-          <img src={props.userInfo.logo} style={styles.logo}/>
-          <div style={styles.username}>Dr. Lupo</div>
-          <div style={styles.category}>Fort Nite</div>
+          <img src={recommendedChannelOneLogo} style={styles.logo}/>
+          <div style={styles.username}>{recommendedChannelOneDisplayName}</div>
+          <div style={styles.category}>{recommendedChannelOneCategory}</div>
         </div>
         <div style={styles.div}>
-          <img src={props.userInfo.logo} style={styles.logo}/>
-          <div style={styles.username}>CrazyMan</div>
-          <div style={styles.category}>Fort Nite</div>
+          <img src={recommendedChannelTwoLogo} style={styles.logo}/>
+          <div style={styles.username}>{recommendedChannelTwoDisplayName}</div>
+          <div style={styles.category}>{recommendedChannelTwoCategory}</div>
         </div>
         <div style={styles.div}>
-          <img src={props.userInfo.logo} style={styles.logo}/>
-          <div style={styles.username}>Loeya</div>
-          <div style={styles.category}>Fort Nite</div>
+          <img src={recommendedChannelThreeLogo} style={styles.logo}/>
+          <div style={styles.username}>{recommendedChannelThreeDisplayName}</div>
+          <div style={styles.category}>{recommendedChannelThreeCategory}</div>
         </div>
         </div>
       </div>
@@ -44,6 +68,7 @@ styles.logo = {
   borderRadius: "4px",
   float: "left",
   paddingRight: "8px",
+  paddingLeft: "6px"
 }
 
 styles.h3 = {
@@ -74,6 +99,7 @@ styles.category = {
 
 styles.background = {
   position: "absolute",
+  top: "0px",
   left: "5px",
   background: "#181818",
   width: "250px",

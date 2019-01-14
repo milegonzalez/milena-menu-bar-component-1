@@ -4,7 +4,7 @@ const mysql = require('mysql');
 let userDataGenerator = function () {
   let userData = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 100; i++) {
     let user = faker.fake("{{internet.userName}}, {{image.avatar}}, {{image.image}}, {{commerce.department}}, {{random.number}}, {{random.number}}");
     user.trim();
     userData.push(user.split(','));
@@ -25,6 +25,52 @@ let userDataGenerator = function () {
 
   return results;
 };
+
+let recommendedChannelGenerator = function () {
+  let userData = [];
+
+  for (let i = 0; i < 100; i++) {
+    let user = faker.fake("{{internet.userName}}, {{image.avatar}}, {{commerce.department}}");
+    user.trim();
+    userData.push(user.split(','));
+  }
+
+  let results = userData.map(arr => {
+    let obj = {};
+    for (let i = 0; i < arr.length; i++) {
+      if (i === 0) obj['display_name'] = arr[0];
+      if (i === 1) obj['logo'] = arr[1];
+      if (i === 2) obj['category'] = arr[2];
+    }
+    return obj
+  });
+
+  return results;
+};
+
+
+let followersGenerator = function () {
+  let userData = [];
+
+  for (let i = 0; i < 100; i++) {
+    let user = faker.fake("{{internet.userName}}, {{image.avatar}}, {{commerce.department}}");
+    user.trim();
+    userData.push(user.split(','));
+  }
+
+  let results = userData.map(arr => {
+    let obj = {};
+    for (let i = 0; i < arr.length; i++) {
+      if (i === 0) obj['display_name'] = arr[0];
+      if (i === 1) obj['logo'] = arr[1];
+      if (i === 2) obj['category'] = arr[2];
+    }
+    return obj
+  });
+
+  return results;
+};
+
 
 
 const connection = mysql.createConnection({
@@ -48,6 +94,32 @@ const insertDataToDatabase = function () {
   console.log('Records inserted');
 }
 
+const recommendedChannelsToDatabase = function () {
+  for (var i = 0; i < 10; i++) {
+    let values = recommendedChannelGenerator();
+    let sql = `INSERT INTO channels (display_name, logo, category) VALUES ('${values[i].display_name}', '${values[i].logo}', '${values[i].category}') `;
+    connection.query(sql, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  }
+  console.log('Records inserted');
+}
+
+const followersToDatabase = function () {
+  for (var i = 0; i < 10; i++) {
+    let values = followersGenerator();
+    let sql = `INSERT INTO followers (display_name, logo, category) VALUES ('${values[i].display_name}', '${values[i].logo}', '${values[i].category}') `;
+    connection.query(sql, function (err) {
+      if (err) {
+        console.log(err);
+      }
+    });
+  }
+  console.log('Records inserted');
+}
+
 
 connection.connect(function (err) {
   if (err) {
@@ -56,5 +128,7 @@ connection.connect(function (err) {
 
   console.log('Connected to the MySQL server. ');
   insertDataToDatabase();
+  recommendedChannelsToDatabase();
+  followersToDatabase();
 });
 
