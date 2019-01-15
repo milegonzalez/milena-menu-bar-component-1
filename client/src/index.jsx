@@ -20,21 +20,18 @@ class App extends React.Component {
   }
 
   handleClick (e) {
-    let newFollowers = this.state.followers;
     if(!this.state.toggle || this.state.followedUser === null) {
       this.setState({
         toggle: 'On',
         followedUser: this.state.users[this.state.selectedUser].display_name,
         followedCategory: this.state.users[this.state.selectedUser].category,
         followedLogo: this.state.users[this.state.selectedUser].logo,
-        followers: newFollowers + 1
       })
     } else {
       this.setState({
         followedUser: null,
         followedCategory: null,
         followedLogo: null,
-        followers: newFollowers - 1
       })
     }
   }
@@ -66,7 +63,6 @@ class App extends React.Component {
     const sidebar = this.state.users.length ? <SideBar userInfo={this.state} onSelect={this.displayStreamerVideos}/> : null;
     const appRouter = this.state.users.length ? <AppRouter userInfo={this.state} onClick={(e) => this.handleClick(e)}/> : null;
     return (
-
       <div>
         {appRouter}
         {sidebar}
