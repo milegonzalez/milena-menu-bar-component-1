@@ -1,9 +1,8 @@
 import React from 'react';
 
 const SideBar = (props) => {
-  const userInfo = props.userInfo;
+  const userInfo = props.userInfo.users;
   const firstThree = userInfo.slice(0, 3);
-  console.log(firstThree);
   const three = firstThree.map((user, index) => {
     return (
       <div key={index} style={styles.div} onClick={(e) => props.onSelect(e, index)}>
@@ -14,46 +13,21 @@ const SideBar = (props) => {
     )
   })
 
+  console.log('props.userInfo', props.userInfo,  props.userInfo.followedUser)
 
   return (
     <div style={styles.background}>
+    <h3 style={styles.h3}>Followed Channels</h3>
+     <div style={styles.div}>
+     <img src={props.userInfo.followedLogo} style={styles.logo}/>
+     <div style={styles.username}>{props.userInfo.followedUser}</div>
+     <div style={styles.category}>{props.userInfo.followedCategory}</div>
+     </div>
     <h3 style={styles.h3}>Recommended Channels</h3>
       {three}
     </div>
   )
-
-
-
-
-    // return (s
-    //   <div style={styles.background}>
-    //     <h3 style={styles.h3}>Followed Channels</h3>
-    //     <div style={styles.div}>
-    //       <img src={props.userInfo.followedLogo} style={styles.logo}/>
-    //       <div style={styles.username}>{props.userInfo.followedUser}</div>
-    //       <div style={styles.category}>{props.userInfo.followedCategory}</div>
-    //     </div>
-    //     <h3 style={styles.h3}>Recommended Channels</h3>
-    //     <div>
-    //     <div style={styles.div}>
-    //       <img src={recommendedChannelOneLogo} style={styles.logo}/>
-    //       <div style={styles.username}>{recommendedChannelOneDisplayName}</div>
-    //       <div style={styles.category}>{recommendedChannelOneCategory}</div>
-    //     </div>
-    //     <div style={styles.div}>
-    //       <img src={recommendedChannelTwoLogo} style={styles.logo}/>
-    //       <div style={styles.username}>{recommendedChannelTwoDisplayName}</div>
-    //       <div style={styles.category}>{recommendedChannelTwoCategory}</div>
-    //     </div>
-    //     <div style={styles.div}>
-    //       <img src={recommendedChannelThreeLogo} style={styles.logo}/>
-    //       <div style={styles.username}>{recommendedChannelThreeDisplayName}</div>
-    //       <div style={styles.category}>{recommendedChannelThreeCategory}</div>
-    //     </div>
-    //     </div>
-    //   </div>
-    // )
-  }
+}
 
 const styles = {};
 

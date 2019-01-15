@@ -8,6 +8,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      followedUser: null,
+      followedCategory: null,
+      followedLogo: null,
       users: [],
       selectedUser: 0
     }
@@ -21,13 +24,12 @@ class App extends React.Component {
     if(!this.state.toggle || this.state.followedUser === null) {
       this.setState({
         toggle: 'On',
-        followedUser: this.state.display_name,
-        followedCategory: this.state.category,
-        followedLogo: this.state.logo,
+        followedUser: this.state.users[this.state.selectedUser].display_name,
+        followedCategory: this.state.users[this.state.selectedUser].category,
+        followedLogo: this.state.users[this.state.selectedUser].logo,
         followers: newFollowers + 1
       })
     } else {
-      console.log(this.state)
       this.setState({
         followedUser: null,
         followedCategory: null,
@@ -40,7 +42,6 @@ class App extends React.Component {
   displayStreamerVideos(e, index) {
     //when username on sidebar is clicked
     //that specific user's information shows up underneath the route
-    // console.log('CLICKED ON', e, selectedUser);
     console.log('index', index, "e", e)
     this.setState({ selectedUser: index })
   }
@@ -62,8 +63,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
-    const sidebar = this.state.users.length ? <SideBar userInfo={this.state.users} onSelect={this.displayStreamerVideos}/> : null;
+    const sidebar = this.state.users.length ? <SideBar userInfo={this.state} onSelect={this.displayStreamerVideos}/> : null;
     const appRouter = this.state.users.length ? <AppRouter userInfo={this.state} onClick={(e) => this.handleClick(e)}/> : null;
     return (
 

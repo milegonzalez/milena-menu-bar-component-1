@@ -1,6 +1,7 @@
 const faker = require('faker');
 const mysql = require('mysql');
 
+
 let userDataGenerator = function () {
   let userData = [];
 
@@ -29,7 +30,7 @@ let userDataGenerator = function () {
 let followersGenerator = function () {
   let userData = [];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     let user = faker.fake("{{internet.userName}}, {{image.avatar}}, {{commerce.department}}");
     user.trim();
     userData.push(user.split(','));
@@ -59,7 +60,7 @@ const connection = mysql.createConnection({
 
 
 const insertDataToDatabase = function () {
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 100; i++) {
     let values = userDataGenerator();
     let sql = `INSERT INTO users (display_name, logo, profile_image_url, category, followers, following) VALUES ('${values[i].display_name}', '${values[i].logo}', '${values[i].profile_image}', '${values[i].category}', ${values[i].followers}, ${values[i].followings}) `;
     connection.query(sql, function (err) {
