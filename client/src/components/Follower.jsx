@@ -1,8 +1,5 @@
 import React from 'react';
-import faker from 'faker';
 
-
-let image;
 export const Follower = (props) => {
   image = props.userData.profile_image_url;
   return (
@@ -10,7 +7,6 @@ export const Follower = (props) => {
       <div><img src={props.userData.logo} style={styles.image}/></div>
       <div style={styles.username}>{props.userData.display_name}</div>
       </div>
-
   );
 }
 
@@ -37,7 +33,6 @@ styles.image = {
 }
 
 styles.background = {
-  // backgroundImage: `url(${image})`,
   backgroundColor: "#181818",
   borderRadius: "5px",
   width: "295px",
@@ -48,11 +43,6 @@ styles.backgroundImage = {
   backgroundImage: `url(${image})`,
 }
 
-/*
-${faker.fake("{{image.image}}")}
-https://picsum.photos/200/300/?random
-
- */
 
 
 export default Follower;
