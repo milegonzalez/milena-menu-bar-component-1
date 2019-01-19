@@ -6,20 +6,20 @@ import Events from './components/Events.jsx';
 import Following from './components/Following.jsx';
 import Followers from './components/Followers.jsx';
 
-
 const AppRouter = (props) => {
-  console.log('props=======>' ,props)
   const userInfo = props.userInfo;
+  const followingNumbers = <span style={styles.numbers}>{userInfo.users[userInfo.selectedUser].following.toLocaleString()}</span>;
+  const followersNumbers = <span style={styles.numbers}>{userInfo.users[userInfo.selectedUser].followers.toLocaleString()}</span>;
   return (
     <Router>
       <div>
         <nav>
           <ul style={styles.nav}>
-            <li style={styles.navItem}>
+            <li>
               <img style={styles.logo} src={userInfo.users[userInfo.selectedUser].logo} />
             </li>
             <li style={styles.navItem}>
-              <Link to="/" style={styles.link}>{userInfo.users[userInfo.selectedUser].display_name}</Link>
+              <Link to="/" style={styles.linkUsername}>{userInfo.users[userInfo.selectedUser].display_name}</Link>
             </li>
             <li style={styles.navItem}>
               <Link to="/Videos" style={styles.link}>Videos  {userInfo.users[userInfo.selectedUser].Videos}</Link>
@@ -31,10 +31,10 @@ const AppRouter = (props) => {
               <Link to="/Events" style={styles.link}>Events</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Followers" style={styles.link}>Followers  {userInfo.users[userInfo.selectedUser].followers}</Link>
+              <Link to="/Followers" style={styles.link}>Followers  {followersNumbers}</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Following" style={styles.link}>Following  {userInfo.users[userInfo.selectedUser].following} </Link>
+              <Link to="/Following" style={styles.link}>Following {followingNumbers} </Link>
             </li>
           </ul>
           <button style={styles.navRight} >Subscribe</button>
@@ -44,8 +44,8 @@ const AppRouter = (props) => {
         <Route path="/Videos" component={Videos} />
         <Route path="/Clips" component={Clips} />
         <Route path="/Events" component={Events} />
-        <Route path="/Followers" component={Followers} />
-        <Route path="/Following" component={Following} />
+        <Route path="/Followers" render={(routeProps) => <Followers {...routeProps} userArray={props.userInfo.users}/>} />
+        <Route path="/Following" render={(routeProps) => <Following {...routeProps} userArray={props.userInfo.users}/>} />
 
       </div>
     </Router>
@@ -54,8 +54,24 @@ const AppRouter = (props) => {
 
 const styles = {};
 
+styles.numbers = {
+  color: "gray"
+}
+
+styles.linkUsername = {
+  textDecoration: "none",
+  color: "black"
+}
+
 styles.link = {
-  textDecoration: "none"
+  textDecoration: "none",
+}
+
+styles.border = {
+  paddingTop: "30px",
+  borderBottom: "solid",
+  borderColor: "#d3d3d3",
+  borderWidth: "1px",
 }
 
 styles.nav = {
@@ -69,7 +85,7 @@ styles.nav = {
   fontSize: "14px",
   fontFamily: "Helvetica",
   fontColor: "#6441a4",
-  alignContent: "center"
+  alignContent: "center",
 }
 
 styles.navItem = {
@@ -91,7 +107,10 @@ styles.navRight = {
 
 styles.logo = {
   width: "25%",
-  borderRadius: "4px"
+  borderRadius: "4px",
+  paddingTop: "10px",
+  // position: "absolute",
+  paddingLeft: "70px"
 }
 
 
