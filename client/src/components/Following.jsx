@@ -6,7 +6,7 @@ const Following = (props) => {
   return (
     <div style={styles.position}>
       {props.userArray.map((user, index) => {
-        return <div style={styles.follower} key={index}> <Follower userData={user}  /></div>;
+        return <div style={styles.follower} key={index}> <Follower userData={user}/></div>;
       })}
     </div>
   )

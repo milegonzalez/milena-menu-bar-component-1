@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Follower = (props) => {
-  image = props.userData.profile_image_url;
+  let image = props.userData.profile_image_url;
   return (
      <div style={{backgroundImage: "url(" + image + ")" , backgroundColor: "#181818", borderRadius: "5px", width: "295px", height: "165px", overlayColor: "white"}}>
       <div><img src={props.userData.logo} style={styles.image}/></div>
@@ -38,11 +38,6 @@ styles.background = {
   width: "295px",
   height: "165px",
 }
-
-styles.backgroundImage = {
-  backgroundImage: `url(${image})`,
-}
-
 
 
 export default Follower;

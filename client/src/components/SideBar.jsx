@@ -14,28 +14,6 @@ const SideBar = (props) => {
     )
   })
 
-  // const threeRandomChannels = function (userInfo) {
-  //   let threeChannels = [];
-  //   let randomNumber = Math.floor((Math.random() * 100));
-  //   for (let i = 0; i < 3; i++){
-  //     threeChannels.push(userInfo[randomNumber]);
-  //   }
-  //   return threeChannels;
-  // }
-
-  // const featuredChannels = threeRandomChannels(userInfo);
-
-  // const three = firstThree.map((user, index) => {
-  //   return (
-  //     <div key={index} style={styles.div} onClick={(e) => props.onSelect(e, index)}>
-  //     <img src={user.logo} style={styles.logo}/>
-  //       <div style={styles.username}>{user.display_name}</div>
-  //       <div style={styles.category}>{user.category}</div>
-  //     </div>
-  //   )
-  // })
-
-  // console.log('props.userInfo', props.userInfo,  props.userInfo.followedUser)
 
   return (
     <div style={styles.background}>

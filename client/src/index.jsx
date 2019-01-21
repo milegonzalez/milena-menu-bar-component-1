@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SideBar from './components/SideBar.jsx';
 import AppRouter from './Router.jsx';
-import { ifError } from 'assert';
+import fakeData from './../../database/fakeData'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class App extends React.Component {
       followedUser: null,
       followedCategory: null,
       followedLogo: null,
-      users: [],
+      users: fakeData,
       selectedUser: 0
     }
 
@@ -44,24 +44,28 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/username')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            users: [...result]
-          })
-        },
-        (error) => {
-          console.log('error')
-        }
-      )
-
+    // this gets info from the database
+    // fetch('/username')
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.setState({
+    //         users: [...result]
+    //       })
+    //     },
+    //     (error) => {
+    //       console.log('error')
+    //     }
+    //   )
+    // this.setState({
+    //   users: [...fakeData]
+    // })
   }
 
   render() {
     const sidebar = this.state.users.length ? <SideBar userInfo={this.state} onSelect={this.displayStreamerVideos}/> : null;
     const appRouter = this.state.users.length ? <AppRouter userInfo={this.state} onClick={(e) => this.handleClick(e)}/> : null;
+    console.log(this.state)
     return (
       <div>
         {appRouter}
