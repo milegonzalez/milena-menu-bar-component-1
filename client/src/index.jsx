@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import SideBar from './components/SideBar.jsx';
 import AppRouter from './Router.jsx';
+import { ifError } from 'assert';
 import fakeData from './../../database/fakeData'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -37,35 +39,28 @@ class App extends React.Component {
   }
 
   displayStreamerVideos(e, index) {
-    //when username on sidebar is clicked
-    //that specific user's information shows up underneath the route
-    console.log('index', index, "e", e)
     this.setState({ selectedUser: index })
   }
 
-  componentDidMount() {
-    // this gets info from the database
-    // fetch('/username')
-    //   .then(res => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.setState({
-    //         users: [...result]
-    //       })
-    //     },
-    //     (error) => {
-    //       console.log('error')
-    //     }
-    //   )
-    // this.setState({
-    //   users: [...fakeData]
-    // })
-  }
+
+  // componentDidMount() {
+  //   fetch('http://localhost:3000/username')
+  //     .then(res => res.json())
+  //     .then(
+  //       (result) => {
+  //         this.setState({
+  //           users: [...result]
+  //         })
+  //       },
+  //       (error) => {
+  //         console.log('error')
+  //       }
+  //     )
+  // }
 
   render() {
     const sidebar = this.state.users.length ? <SideBar userInfo={this.state} onSelect={this.displayStreamerVideos}/> : null;
     const appRouter = this.state.users.length ? <AppRouter userInfo={this.state} onClick={(e) => this.handleClick(e)}/> : null;
-    console.log(this.state)
     return (
       <div>
         {appRouter}
@@ -75,5 +70,9 @@ class App extends React.Component {
   }
 }
 
+/*
+following = users from the database in reverse order
+square (background = profile_image_url), display_name underneath logo (centered)
+*/
 
 ReactDOM.render(<App />, document.getElementById('app'));

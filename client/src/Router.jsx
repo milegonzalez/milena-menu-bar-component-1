@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Videos from './components/Videos.jsx';
 import Clips from './components/Clips.jsx';
 import Events from './components/Events.jsx';
@@ -12,14 +12,14 @@ const AppRouter = (props) => {
   const followersNumbers = <span style={styles.numbers}>{userInfo.users[userInfo.selectedUser].followers.toLocaleString()}</span>;
   return (
     <Router>
-      <div>
+      <div style={styles.header}>
         <nav>
           <ul style={styles.nav}>
-            <li>
+          <li style={styles.navItem}>
               <img style={styles.logo} src={userInfo.users[userInfo.selectedUser].logo} />
             </li>
             <li style={styles.navItem}>
-              <Link to="/" style={styles.linkUsername}>{userInfo.users[userInfo.selectedUser].display_name}</Link>
+              <Link to="/" style={styles.link}>{userInfo.users[userInfo.selectedUser].display_name}</Link>
             </li>
             <li style={styles.navItem}>
               <Link to="/Videos" style={styles.link}>Videos  {userInfo.users[userInfo.selectedUser].Videos}</Link>
@@ -31,21 +31,21 @@ const AppRouter = (props) => {
               <Link to="/Events" style={styles.link}>Events</Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Followers" style={styles.link}>Followers  {followersNumbers}</Link>
+              <Link to="/Followers" style={styles.link}>Followers {followersNumbers} </Link>
             </li>
             <li style={styles.navItem}>
-              <Link to="/Following" style={styles.link}>Following {followingNumbers} </Link>
+              <Link to="/Following" style={styles.link} userInfo={props.userInfo.users}>Following  {followingNumbers} </Link>
             </li>
           </ul>
           <button style={styles.navRight} >Subscribe</button>
           <button style={styles.navRight} onClick={(e) => props.onClick(e)}>Follow</button>
         </nav>
 
-        <Route path="/Videos" component={Videos} />
-        <Route path="/Clips" component={Clips} />
-        <Route path="/Events" component={Events} />
-        <Route path="/Followers" render={(routeProps) => <Followers {...routeProps} userArray={props.userInfo.users}/>} />
-        <Route path="/Following" render={(routeProps) => <Following {...routeProps} userArray={props.userInfo.users}/>} />
+        {/* <Route path="/Videos" component={Videos} /> */}
+        <Route path="/clips" component={Videos} />
+        <Route path="/events" component={Events} />
+        <Route path="/followers" render={(routeProps) => <Followers {...routeProps} userArray={props.userInfo.users}/>} />
+        <Route path="/following" render={(routeProps) => <Following {...routeProps} userArray={props.userInfo.users}/>} />
 
       </div>
     </Router>
@@ -60,18 +60,26 @@ styles.numbers = {
 
 styles.linkUsername = {
   textDecoration: "none",
-  color: "black"
+  color: "#6441A5"
 }
+
 
 styles.link = {
   textDecoration: "none",
+  color: "#6441A5"
 }
 
-styles.border = {
-  paddingTop: "30px",
-  borderBottom: "solid",
-  borderColor: "#d3d3d3",
-  borderWidth: "1px",
+styles.header = {
+  position: "fixed",
+  width: "76%",
+  // backgroundColor: "rgb(100, 65, 165)",
+  color: "#fff",
+  height: "50px",
+  padding: 0,
+  margin: 0,
+  display: "inline-flex",
+  justifyContent: "flex-end",
+  "align-items": "center",
 }
 
 styles.nav = {
@@ -85,11 +93,10 @@ styles.nav = {
   fontSize: "14px",
   fontFamily: "Helvetica",
   fontColor: "#6441a4",
-  alignContent: "center",
+  alignContent: "center"
 }
 
 styles.navItem = {
-  textAlign: "center",
   listStyleType: "none",
   padding: "10px",
 }
@@ -107,10 +114,7 @@ styles.navRight = {
 
 styles.logo = {
   width: "25%",
-  borderRadius: "4px",
-  paddingTop: "10px",
-  // position: "absolute",
-  paddingLeft: "70px"
+  borderRadius: "4px"
 }
 
 

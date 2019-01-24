@@ -1,14 +1,19 @@
 import React from 'react';
 
 class Events extends React.Component {
+  componentDidMount() {
+    var parent = document.getElementById('middle');
+    var events = document.getElementById('events');
+    parent.appendChild(events);
+  }
+
   render() {
-
     return (
-      <div style={styles.position}>
+      <div id="events" style={styles.position}>
 
-      <h2>   .</h2>
+      <h4 style={styles.h4}>Nothing here yet</h4>
 
-      This is the Events </div>
+     </div>
     )
   }
 }
@@ -16,9 +21,14 @@ class Events extends React.Component {
 const styles = {}
 
 styles.position = {
-  position: "absolute",
-  top: "25px",
-  left: "260px"
+  width: '100vh',
+  height: '94vh',
+  textAlign: 'center'
+}
+
+styles.h4 = {
+  color: '#6e6779',
+  fontStyle: 'italic'
 }
 
 

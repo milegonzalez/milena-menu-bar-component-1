@@ -2,24 +2,36 @@ import React from 'react';
 import { Follower } from './Follower.jsx'
 
 
-const Following = (props) => {
+class Following extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    var parent = document.getElementById('middle');
+    var following = document.getElementById('following');
+    parent.appendChild(following);
+  }
+
+  render() {
+
   return (
-    <div style={styles.position}>
-      {props.userArray.map((user, index) => {
-        return <div style={styles.follower} key={index}> <Follower userData={user}/></div>;
-      })}
+    <div id="following" style={styles.position}>
+        {this.props.userArray.map((user, index) => {
+          return <div style={styles.follower} key={index}> <Follower userData={user}/></div>;
+        })}
     </div>
   )
+  }
 }
 
 const styles = {};
 
 styles.position = {
-  position: "absolute",
-  top: "25px",
-  left: "260px",
-  float: "left",
-  margin: "20px"
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center'
 }
 
 styles.follower = {
