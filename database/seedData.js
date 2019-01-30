@@ -1,13 +1,12 @@
 const faker = require('faker');
-const mysql = require('mysql');
-
+const db = require('./index.js');
 
 let userDataGenerator = function () {
   let userData = [
     ['A_Seagull', 'https://static1.squarespace.com/static/5922f5a8be659438f097a6d8/t/5c438f7d898583fc9a7e872a/1547931522209/128.png?format=300w', 'https://static-cdn.jtvnw.net/jtv_user_pictures/da9d954d-8759-4325-a1ca-46d58c43c93d-profile_banner-480.png', 'Dark Souls III', '906030', '194']
   ];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 10; i++) {
     let user = faker.fake("{{internet.userName}}, {{image.avatar}}, {{image.image}}, {{commerce.department}}, {{random.number}}, {{random.number}}");
     user.trim();
     userData.push(user.split(','));
@@ -29,20 +28,12 @@ let userDataGenerator = function () {
   return results;
 };
 
-
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'WallacePennyToby',
-  database: 'users'
-});
-
-
 const insertDataToDatabase = function () {
-  for (var i = 0; i < 100; i++) {
+  console.log('starting records')
+  for (var i = 0; i < 10; i++) {
     let values = userDataGenerator();
     let sql = `INSERT INTO users (display_name, logo, profile_image_url, category, followers, following) VALUES ('${values[i].display_name}', '${values[i].logo}', '${values[i].profile_image}', '${values[i].category}', ${values[i].followers}, ${values[i].followings}) `;
-    connection.query(sql, function (err) {
+    db.connection.query(sql, function (err) {
       if (err) {
         console.log(err);
       }
@@ -51,12 +42,4 @@ const insertDataToDatabase = function () {
   console.log('Records inserted');
 }
 
-
-connection.connect(function (err) {
-  if (err) {
-    return console.error('error ' + err.message);
-  }
-
-  console.log('Connected to the MySQL server. ');
   insertDataToDatabase();
-});
